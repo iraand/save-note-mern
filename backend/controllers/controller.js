@@ -31,12 +31,13 @@ const setGoal = asyncHandler(async (req, res) => {
 // @access Private
 const updateGoal = asyncHandler(async (req, res) => {
  const goal = await Goal.findById(req.params.id);
+ 
  if (!goal) {
   res.status(400);
   throw new Error("Goal not found");
  }
 
- const updatedGoal = await Goal.findByIdAndUpdate(reg.params.id, req.body, {
+ const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
   new: true,
  });
 
