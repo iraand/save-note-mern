@@ -11,7 +11,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
-app.use('/api/goals', require('./routs/routs'))
+app.use('/api/goals', require('./routs/goal.routs'))
+app.use("/api/users", require("./routs/user.routs"));
 app.use(errorHandler)
 app.listen(port, () =>
  console.log(`Server started on port ${port}`.bgBrightMagenta)
