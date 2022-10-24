@@ -1,11 +1,28 @@
-import React from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import NoteForm from '../components/NoteForm'
 
 function Dashboard() {
+  const navigate = useNavigate()
+
+  const { user } = useSelector(state => state.auth)
+
+  useEffect(() => {
+    if(!user) {
+      navigate('/login')
+    }
+  },[user, navigate])
+
   return (
-    <div>
-      
-    </div>
-  )
+   <>
+    <section className='heading'>
+     <h1>Welcome {user && user.name}</h1>
+     <p>Notes Dashboard</p>
+    </section>
+    <NoteForm />
+   </>
+  );
 }
 
 export default Dashboard
