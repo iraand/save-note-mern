@@ -21,7 +21,7 @@ const setNote = asyncHandler(async (req, res) => {
 
  const note = await Note.create({
   text: req.body.text,
-  user: req.user.id
+  user: req.user.id,
  });
 
  res.status(200).json(note);
@@ -32,35 +32,12 @@ const setNote = asyncHandler(async (req, res) => {
 // @access Private
 const updateNote = asyncHandler(async (req, res) => {
  const note = await Note.findById(req.params.id);
- 
+
  if (!note) {
   res.status(400);
   throw new Error("Note not found");
  }
 
- // Check for user
- if(!req.user) {
-    res.status(401)
-    throw new Error('User not found')
- }
-
- // Make sure the logged in user mamatches the note user
- if (note.user.toString() !== req.user.id){
-    res.status(401)
-    throw new Error('User not authorized')
- }
-
- const updatedNote = await Note.findByIdAndUpdate(req.params.id, req.body, {
-  new: true,
- });
-
- res.status(200).json(updatedNote);
-});
-
-// @desc Delete notes
-// @route DELETE /api/notes
-// @access Private
-const deleteNote = asyncHandler(async (req, res) => {
  // Check for user
  if (!req.user) {
   res.status(401);
@@ -73,7 +50,29 @@ const deleteNote = asyncHandler(async (req, res) => {
   throw new Error("User not authorized");
  }
 
+ const updatedNote = await Note.findByIdAndUpdate(req.params.id, req.body, {
+  new: true,
+ });
+
+ res.status(200).json(updatedNote);
+});
+
+// @desc Delete note
+// @route DELETE /api/notes
+// @access Private
+const deleteNote = asyncHandler(async (req, res) => {
+ // Check for user
+ if (!req.user) {
+  res.status(401);
+  throw new Error("User not found");
+ }
  const note = await Note.findById(req.params.id);
+ // Make sure the logged in user mamatches the note user
+ if (note.user.toString() !== req.user.id) {
+  res.status(401);
+  throw new Error("User not authorized");
+ }
+
  if (!note) {
   res.status(400);
   throw new Error("Note not found");

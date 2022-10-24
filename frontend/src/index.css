@@ -56,8 +56,11 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size:0.9rem
 }
-
+.logo{
+  font-size:1.3rem
+}
 .header ul li {
   margin-left: 20px;
 }
@@ -87,20 +90,20 @@ h3 {
   color: #828282;
 }
 
-.goals {
+.notes {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
-.goal {
+.note {
   background-color: #f4f4f4;
   margin: 10px 0;
   padding: 20px 0 10px;
   position: relative;
 }
 
-.goal .close {
+.note .close {
   position: absolute;
   top: 10px;
   right: 15px;
@@ -156,9 +159,14 @@ h3 {
 
 .btn svg {
   margin-right: 8px;
-  
 }
-
+.btn-logout{
+  font-size: 0.9rem;
+  font-weight: 400;  
+  color: #000; 
+  background: #fff;
+  border: none; 
+}
 .btn-reverse {
   background: #fff;
   color: #000;
@@ -173,7 +181,10 @@ h3 {
   transform: scale(0.98);
   transition: all 0.3s;
 }
-
+.btn-logout:hover {
+  color: #777;
+   transform: scale(1);
+}
 .loadingSpinnerContainer {
   position: fixed;
   top: 0;
