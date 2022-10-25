@@ -92,14 +92,14 @@ h3 {
 
 .notes {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 10px;
 }
 
 .note {
   background-color: #f4f4f4;
   margin: 10px 0;
-  padding: 20px 0 10px;
+  padding: 20px 0 10px 15px;
   position: relative;
 }
 
